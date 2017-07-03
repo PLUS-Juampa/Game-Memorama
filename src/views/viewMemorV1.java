@@ -1,6 +1,6 @@
 package views;  // Paquete donde está guardada la clase del programa
 
-// Importsa necesarios para el desarrollo del porgrama
+// Importa necesarios para el desarrollo del porgrama
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
