@@ -19,7 +19,12 @@ import javax.swing.JButton;
  *
  * @author PLUS-Juampa (Juan Paulino Cruz Mejía - 02/jul/2017)
  */
-// Clase principal donde contiene todos los componentes del programa
+
+/*
+Clase que se encargará de mostrar y ejecutar los componentes necesarios para la ejecución de un juego conocido como memorarma.
+En este juego se almacenarán los botones y a su vez las imágenes necesarias para poder representar en su totalidad la funcionalidad
+de lo que correponde al jugeo
+*/
 public class viewMemorV1 extends javax.swing.JFrame {
 
     int auxiliar = 0;   // Variable auxiliar para poder cambiar el estilo de las imágenes
@@ -33,93 +38,108 @@ public class viewMemorV1 extends javax.swing.JFrame {
 
     int turno = 1;
     // Varriables usadas para usarse en el juego
-    int par1 = 0;
-    int par2 = 0;
-    int vist1 = 0;
-    int vist2 = 0;
-    int clic = 0;
+    int par1 = 0;   // Variable para contar los pares de imágenes acertados por el usuario, que se le contarán al jugador con el turno que correspponda
+    int par2 = 0;   // Misma funcionalidad de la variable anterior
+    int vist1 = 0;  // variable para contabilizar las vistas que se ejecutarán al dar clics sobre los botones y cambiar las imágenes
+    int vist2 = 0;  // misma funcioanliad de variable anerior
+    int clic = 0;   // variable para contabilizar los clics que se darán por el usuario a los botones tratando de acertar las imágenes iguales
 
-    int aumento = 0;
-    int ch1 = 0;
-    int ch2 = 0;
+    int aumento = 0;    // Variable utilizara para contabilizar el número total de pares disponibles, la cual se utilizará para comparar cuando se termine el juego si es que existe un ganador
+    int ch1 = 0;    // Variable para contabilizar el número de pares que lleva el Jugador1
+    int ch2 = 0;    // Variable para contabilizar el número de pares que lleva el Jugador2
 
     ////////////////////
-    JButton FN_arryBotones[] = new JButton[20]; // Arreglo que almacenará los botones del juego en caso de seleccionar otra categoría
-    int FN_images1[] = new int[20];
-    int FN_repets[] = new int[10];
-    int FN_par_s[] = new int[20];
-    int FN_caNotClick[] = new int[20];
+    /*Nuevos componentes que ayudarán a la funcionalidad del juego, en caso de que al inicio del mismp se deseé tratar con 
+        una categoría diferente a la predeterminara*/
+    JButton fnarryBotones[] = new JButton[20]; // Arreglo que almacenará los botones del juego en caso de seleccionar otra categoría
+    int fnimages1[] = new int[20];  //Arreglo para almacenar las imágenes que irán dentro de cada botón, para la categoria 2
+    int fnrepets[] = new int[10];   // Arreglo de repeticiones, para la categoria dos
+    int fnpar_s[] = new int[20];    // Arreglo para contar los pares en la categoría dos
+    int fncaNotClick[] = new int[20];   // Arreglo para contabilizar los clics dados por el usuario, si se encuentra en la categoría dos
 
-    int FN_turno = 1;
+    int fnturno = 1;    // Variable tipo etero para revisar el turno de la categoría dos
 
-    int FN_par1 = 0;
-    int FN_par2 = 0;
-    int FN_vist1 = 0; //vista1
-    int FN_vist2 = 0; //vista2
-    int FN_clic = 0;
+    int fnpar1 = 0; //Variable de tipo entero para contabilizar los pares de imágenes acertados por el jugador 1 en categoría dos
+    int fnpar2 = 0; //Variable de tipo entero para contabilizar los pares de imágenes acertados por el jugador 2 en categoría dos
+    int fnvist1 = 0; // variable para contabilizar las vistas que se ejecutarán al dar clics sobre los botones y cambiar las imágenes, en la categoróa dos
+    int fnvist2 = 0; // variable para contabilizar las vistas que se ejecutarán al dar clics sobre los botones y cambiar las imágenes, en la categoría dos
+    int fnclic = 0; // variable para contar los clics dados por el usuario si se encuentra en la categoría dos
 
-    int FN_aumento = 0;
-    int FN_ch1 = 0;
-    int FN_ch2 = 0;
+    int fnaumento = 0;  // Variable utilizara para contabilizar el número total de pares disponibles, la cual se utilizará para comparar cuando se termine el juego si es que existe un ganador
+    int fnch1 = 0;  // Variable para contabilizar el número de pares que lleva el Jugador1 en categoría dos
+    int fnch2 = 0;  // Variable para contabilizar el número de pares que lleva el Jugador2 en categoría dos
     ///////////////////
 
-    private void iniciarImagenes() {    // Métodoo para almacenar e igualar los botones con el arreglo que se ejecutó al inicio
-        arryBotones[0] = btn_1;
-        arryBotones[1] = btn_2;
-        arryBotones[2] = btn_3;
-        arryBotones[3] = btn_4;
-        arryBotones[4] = btn_5;
-        arryBotones[5] = btn_6;
-        arryBotones[6] = btn_7;
-        arryBotones[7] = btn_8;
-        arryBotones[8] = btn_9;
-        arryBotones[9] = btn_10;
-        arryBotones[10] = btn_11;
-        arryBotones[11] = btn_12;
-        arryBotones[12] = btn_13;
-        arryBotones[13] = btn_14;
-        arryBotones[14] = btn_15;
-        arryBotones[15] = btn_16;
-        arryBotones[16] = btn_17;
-        arryBotones[17] = btn_18;
-        arryBotones[18] = btn_19;
-        arryBotones[19] = btn_20;
+    /*
+    Métodoo para almacenar e igualar los botones con el arreglo que se ejecutó al inicio
+    ayudará a un mejor manejos de los mismos para poder guardar dentro de los botones, las imágenes necesarias para 
+    poder realizar el juego de manera correcta
+    */
+    private void iniciarImagenes() {    
+        arryBotones[0] = btn1;
+        arryBotones[1] = btn2;
+        arryBotones[2] = btn3;
+        arryBotones[3] = btn4;
+        arryBotones[4] = btn5;
+        arryBotones[5] = btn6;
+        arryBotones[6] = btn7;
+        arryBotones[7] = btn8;
+        arryBotones[8] = btn9;
+        arryBotones[9] = btn10;
+        arryBotones[10] = btn11;
+        arryBotones[11] = btn12;
+        arryBotones[12] = btn13;
+        arryBotones[13] = btn14;
+        arryBotones[14] = btn15;
+        arryBotones[15] = btn16;
+        arryBotones[16] = btn17;
+        arryBotones[17] = btn18;
+        arryBotones[18] = btn19;
+        arryBotones[19] = btn20;
         // For para llenar cada uno de los botones con la imágen que tendrá como cara principal antes de hacerle clic
         for (int i = 0; i < arryBotones.length; i++) {
             arryBotones[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg")));
         }
 
     }
-
-    private void FN_iniciarImagenes() {  // Métodoo para almacenar e igualar los botones con el arreglo que se ejecutó al inicio, en caso de ser la sefunda categoría
-        FN_arryBotones[0] = btn_1;
-        FN_arryBotones[1] = btn_2;
-        FN_arryBotones[2] = btn_3;
-        FN_arryBotones[3] = btn_4;
-        FN_arryBotones[4] = btn_5;
-        FN_arryBotones[5] = btn_6;
-        FN_arryBotones[6] = btn_7;
-        FN_arryBotones[7] = btn_8;
-        FN_arryBotones[8] = btn_9;
-        FN_arryBotones[9] = btn_10;
-        FN_arryBotones[10] = btn_11;
-        FN_arryBotones[11] = btn_12;
-        FN_arryBotones[12] = btn_13;
-        FN_arryBotones[13] = btn_14;
-        FN_arryBotones[14] = btn_15;
-        FN_arryBotones[15] = btn_16;
-        FN_arryBotones[16] = btn_17;
-        FN_arryBotones[17] = btn_18;
-        FN_arryBotones[18] = btn_19;
-        FN_arryBotones[19] = btn_20;
+/*
+    Métodoo para almacenar e igualar los botones con el arreglo que se ejecutó al inicio
+    ayudará a un mejor manejos de los mismos para poder guardar dentro de los botones, las imágenes necesarias para 
+    poder realizar el juego de manera correcta, este método se ejecutará en caso de que el usuario elija la categoría dos
+    */
+    private void fniniciarImagenes() {  
+        fnarryBotones[0] = btn1;
+        fnarryBotones[1] = btn2;
+        fnarryBotones[2] = btn3;
+        fnarryBotones[3] = btn4;
+        fnarryBotones[4] = btn5;
+        fnarryBotones[5] = btn6;
+        fnarryBotones[6] = btn7;
+        fnarryBotones[7] = btn8;
+        fnarryBotones[8] = btn9;
+        fnarryBotones[9] = btn10;
+        fnarryBotones[10] = btn11;
+        fnarryBotones[11] = btn12;
+        fnarryBotones[12] = btn13;
+        fnarryBotones[13] = btn14;
+        fnarryBotones[14] = btn15;
+        fnarryBotones[15] = btn16;
+        fnarryBotones[16] = btn17;
+        fnarryBotones[17] = btn18;
+        fnarryBotones[18] = btn19;
+        fnarryBotones[19] = btn20;
         // For para llenar cada uno de los botones con la imágen que tendrá como cara principal antes de hacerle clic, para la segunda categoría
-        for (int i = 0; i < FN_arryBotones.length; i++) {
-            FN_arryBotones[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_2.jpg")));
+        for (int i = 0; i < fnarryBotones.length; i++) {
+            fnarryBotones[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_2.jpg")));
         }
 
     }
-
-    private void iniciarArreglo() { // Método para poder iniciar el areglo para poder mandar las imágenes a los botones de manera aleatoria
+    /*
+        Método para poder iniciar el areglo para poder mandar las imágenes a los botones de manera aleatoria,
+        de tal forma que las imágenes se repartan en todo el tablero de forma dispersa y diferente cada vez que se inicie
+        un nuevo juego
+    */
+    private void iniciarArreglo() { 
         iniciarImagenes();
 
         iniciarCero(images1);
@@ -141,43 +161,58 @@ public class viewMemorV1 extends javax.swing.JFrame {
             }
         }
     }
+    /*
+        Método para poder iniciar el areglo para poder mandar las imágenes a los botones de manera aleatoria,
+        de tal forma que las imágenes se repartan en todo el tablero de forma dispersa y diferente cada vez que se inicie
+        un nuevo juego, en caso de ser la categoría dos
+    */
+    private void fniniciarArreglo() {  
+        fniniciarImagenes();    // Llamada al método que iguala los botones con el arreglo creado para poder asignar las imágenes de manera aleatoria y disperza
 
-    private void FN_iniciarArreglo() {  // Método para poder iniciar el areglo para poder mandar las imágenes a los botones de manera aleatoria, en caso de elegir la segunda categoría
-        FN_iniciarImagenes();
-
-        FN_iniciarCero(FN_images1);
-        FN_iniciarCero(FN_repets);
-        FN_iniciarCero(FN_par_s);
-        FN_iniciarCero(FN_caNotClick);
+        fniniciarCero(fnimages1);
+        fniniciarCero(fnrepets);
+        fniniciarCero(fnpar_s);
+        fniniciarCero(fncaNotClick);
 
         int posicionIma;
         Random Random = new Random();
 
-        for (int i = 0; i < FN_images1.length; i++) {
+        for (int i = 0; i < fnimages1.length; i++) {
             posicionIma = Random.nextInt(10);
 
-            if (FN_repets[posicionIma] < 2) {
-                FN_images1[i] = posicionIma + 1;
-                FN_repets[posicionIma]++;
+            if (fnrepets[posicionIma] < 2) {
+                fnimages1[i] = posicionIma + 1;
+                fnrepets[posicionIma]++;
             } else {
                 i--;
             }
         }
     }
-
-    private void iniciarCero(int[] arreglo) {   // Método para iniciar en los botones con el índice cero
+    /*
+        Método para iniciar en los botones con el índice cero, 
+        esto servirá para poder almacenar las imágenes dentro de los botones dependiendo de la imágen que se desee insertar
+    */
+    private void iniciarCero(int[] arreglo) {   
         for (int i = 0; i < arreglo.length; i++) {
             arreglo[i] = 0;
         }
     }
-
-    private void FN_iniciarCero(int[] FN_arreglo) { // Método para iniciar en los botones con el índice cero, en caso de ser la segunda categoría
-        for (int i = 0; i < FN_arreglo.length; i++) {
-            FN_arreglo[i] = 0;
+    /*
+        Método para iniciar en los botones con el índice cero, 
+        esto servirá para poder almacenar las imágenes dentro de los botones dependiendo de la imágen que se desee insertar,
+        este se usará en caso de ser la categoría dos
+    */
+    private void fniniciarCero(int[] fnarreglo) { 
+        for (int i = 0; i < fnarreglo.length; i++) {
+            fnarreglo[i] = 0;
         }
     }
-
-    private void parejas(int vis1, int vis2) {  // Método para hacer la comparación de las impagenes volteadas, en caso de ser iguales quedarán estáticas
+    /*
+        Método para hacer la comparación de las impagenes volteadas, 
+        en caso de ser iguales quedarán estáticas y al jugador con el turno se le aumentará un par para poder hacer la comparación
+        del ganador final, al término del juego
+    */
+    private void parejas(int vis1, int vis2) {  
         if (images1[vis1] == images1[vis2]) {
 
             if (!(turno == 1)) {
@@ -219,49 +254,60 @@ public class viewMemorV1 extends javax.swing.JFrame {
         }
     }
 
-    private void FN_parejas(int FN_vis1, int FN_vis2) { // Mismo método para hacer la comparación de las parejas, en caso de que se elija la segunda categoría
-        if (FN_images1[FN_vis1] == FN_images1[FN_vis2]) {
+    /*
+        Método para hacer la comparación de las impagenes volteadas, 
+        en caso de ser iguales quedarán estáticas y al jugador con el turno se le aumentará un par para poder hacer la comparación
+        del ganador final, al término del juego
+        Este se ejecutará en caso de ser la categoría dos
+    */
+    private void fnparejas(int fnvis1, int fnvis2) { 
+        if (fnimages1[fnvis1] == fnimages1[fnvis2]) {
 
-            if (!(FN_turno == 1)) {
-                FN_ch1++;
-                FN_par1++;
-                lblPares_J1.setText(FN_par1 + "");
-                FN_aumento++;
+            if (!(fnturno == 1)) {
+                fnch1++;
+                fnpar1++;
+                lblPares_J1.setText(fnpar1 + "");
+                fnaumento++;
 
-                FN_checaGanador();
-
-            }
-            if (FN_turno == 1) {
-                FN_ch2++;
-                FN_par2++;
-                lblPares_J2.setText(FN_par2 + "");
-                FN_aumento++;
-
-                FN_checaGanador();
+                fnchecaGanador();
 
             }
+            if (fnturno == 1) {
+                fnch2++;
+                fnpar2++;
+                lblPares_J2.setText(fnpar2 + "");
+                fnaumento++;
 
-            FN_par_s[FN_vis1] = 1;
-            FN_par_s[FN_vis2] = 1;
+                fnchecaGanador();
+
+            }
+
+            fnpar_s[fnvis1] = 1;
+            fnpar_s[fnvis2] = 1;
 
         } else {
-            FN_arryBotones[FN_vis1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_2.jpg")));
-            FN_arryBotones[FN_vis2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_2.jpg")));
-            FN_caNotClick[FN_vis1] = 0;
-            FN_caNotClick[FN_vis2] = 0;
-            if (FN_turno == 1) {
+            fnarryBotones[fnvis1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_2.jpg")));
+            fnarryBotones[fnvis2].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_2.jpg")));
+            fncaNotClick[fnvis1] = 0;
+            fncaNotClick[fnvis2] = 0;
+            if (fnturno == 1) {
                 lblJugador1.setBackground(Color.BLUE);
                 lblJugador2.setBackground(Color.GRAY);
-                FN_turno = 0;
+                fnturno = 0;
             } else {
                 lblJugador2.setBackground(Color.RED);
                 lblJugador1.setBackground(Color.GRAY);
-                FN_turno = 1;
+                fnturno = 1;
             }
         }
     }
-
-    public void checaGanador() {    // Método para revisar si existe un ganador al término del juego
+    /*
+        Método que hará la comparación al finalizar el juego...
+        En caso de que los pares del jugador 1 sean mayores, se mostrará el nombre ingresado, y además un mensaje designando al ganador
+        En caso contrario se ejecutará la misma acción pero con el nombre del jugador 2
+        En caso de haber empatado mostrará el mensaje de Empate y despliegará un menú de opciones para el usuario
+    */
+    public void checaGanador() {    
 
         if (aumento == 10) {
             if (ch1 == ch2) {
@@ -276,24 +322,35 @@ public class viewMemorV1 extends javax.swing.JFrame {
 
         }
     }
+    /*
+        Método que hará la comparación al finalizar el juego...
+        En caso de que los pares del jugador 1 sean mayores, se mostrará el nombre ingresado, y además un mensaje designando al ganador
+        En caso contrario se ejecutará la misma acción pero con el nombre del jugador 2
+        En caso de haber empatado mostrará el mensaje de Empate y despliegará un menú de opciones para el usuario
+        Este método pertenece a la categoría dos
+    */
+    private void fnchecaGanador() { 
 
-    public void FN_checaGanador() { // Método para revisar si existe un ganador al término del juego, en caso de elegir la segunda categoría
-
-        if (FN_aumento == 10) {
-            if (FN_ch1 == FN_ch2) {
-                FN_MenuEmp();
+        if (fnaumento == 10) {
+            if (fnch1 == fnch2) {
+                fnMenuEmp();
             }
-            if (FN_ch1 > FN_ch2) {
-                FN_MenuJ1();
+            if (fnch1 > fnch2) {
+                fnMenuJ1();
             }
-            if (FN_ch2 > FN_ch1) {
-                FN_MenuJ2();
+            if (fnch2 > fnch1) {
+                fnMenuJ2();
             }
 
         }
     }
-
-    private void accion3(java.awt.event.ActionEvent evt) {  // Método para mostrar las imágenes cada vez que se de un clic en un botón
+    /*  
+        Método para mostrar las imágenes cada vez que se de un clic en un botón
+        Primero mostrará en el botón seleccionado la imágen que se encuentre dentro del mismo botón,
+        posteriormente se mostrará la imagen cuando se de clic en el segundo botón tratando de adivinar
+        si es que son iguales las imágenes
+    */
+    private void accion3(java.awt.event.ActionEvent evt) { 
         for (int i = 0; i < arryBotones.length; i++) {
             if (evt.getSource() == arryBotones[i] && parejasEncontradas(i)) {
                 caNotClick[i]++;
@@ -311,18 +368,24 @@ public class viewMemorV1 extends javax.swing.JFrame {
 
         }
     }
-
-    private void FN_accion3(java.awt.event.ActionEvent evt) {   // Método para mostrar las imágenes cada vez que se de un clic en un botón, en caso de elegir la segunda categoría
-        for (int i = 0; i < FN_arryBotones.length; i++) {
-            if (evt.getSource() == FN_arryBotones[i] && parejasEncontradas(i)) {
-                FN_caNotClick[i]++;
-                if (FN_caNotClick[i] < 2) {
-                    FN_clic++;
-                    FN_arryBotones[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesDbz/db_" + FN_images1[i] + ".jpg")));
-                    if (FN_clic == 1) {
-                        FN_vist1 = i;
+    /*  
+        Método para mostrar las imágenes cada vez que se de un clic en un botón
+        Primero mostrará en el botón seleccionado la imágen que se encuentre dentro del mismo botón,
+        posteriormente se mostrará la imagen cuando se de clic en el segundo botón tratando de adivinar
+        si es que son iguales las imágenes
+        Este se ejectutará en caso de ser la categoría dos
+    */
+    private void fnaccion3(java.awt.event.ActionEvent evt) {   // Método para mostrar las imágenes cada vez que se de un clic en un botón, en caso de elegir la segunda categoría
+        for (int i = 0; i < fnarryBotones.length; i++) {
+            if (evt.getSource() == fnarryBotones[i] && parejasEncontradas(i)) {
+                fncaNotClick[i]++;
+                if (fncaNotClick[i] < 2) {
+                    fnclic++;
+                    fnarryBotones[i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagesDbz/db_" + fnimages1[i] + ".jpg")));
+                    if (fnclic == 1) {
+                        fnvist1 = i;
                     } else {
-                        FN_vist2 = i;
+                        fnvist2 = i;
                     }
                 }
 
@@ -330,8 +393,13 @@ public class viewMemorV1 extends javax.swing.JFrame {
 
         }
     }
-
-    private void accion4(java.awt.event.MouseEvent evt) {   //Método para poder regresar las imágenes a las caras posteriores
+    /*
+        Método para poder regresar las imágenes a las caras posteriores 
+        en caso de que no hayan sido acertadas las imágenes o hayan sido iguales.
+        Por lo tanto el turno se pasa al siguiente jugador quien seguirá con la mism dinámica
+        tratando de juntar más pares de imágenes iguales encontradas
+    */
+    private void accion4(java.awt.event.MouseEvent evt) {   
         for (int i = 0; i < arryBotones.length; i++) {
             if (evt.getSource() == arryBotones[i]) {
                 if (clic >= 2) {
@@ -344,13 +412,19 @@ public class viewMemorV1 extends javax.swing.JFrame {
         }
 
     }
-
-    private void FN_accion4(java.awt.event.MouseEvent evt) {    //Método para poder regresar las imágenes a las caras posteriores, en caso de ser la segunda categoría
-        for (int i = 0; i < FN_arryBotones.length; i++) {
-            if (evt.getSource() == FN_arryBotones[i]) {
-                if (FN_clic >= 2) {
-                    FN_parejas(FN_vist1, FN_vist2);
-                    FN_clic = 0;
+    /*
+        Método para poder regresar las imágenes a las caras posteriores 
+        en caso de que no hayan sido acertadas las imágenes o hayan sido iguales.
+        Por lo tanto el turno se pasa al siguiente jugador quien seguirá con la mism dinámica
+        tratando de juntar más pares de imágenes iguales encontradas
+        En caso de ser la categoría dos
+    */
+    private void fnaccion4(java.awt.event.MouseEvent evt) {    
+        for (int i = 0; i < fnarryBotones.length; i++) {
+            if (evt.getSource() == fnarryBotones[i]) {
+                if (fnclic >= 2) {
+                    fnparejas(fnvist1, fnvist2);
+                    fnclic = 0;
                 }
 
             }
@@ -358,24 +432,35 @@ public class viewMemorV1 extends javax.swing.JFrame {
         }
 
     }
-
-    private boolean parejasEncontradas(int i) { // Método para cotabilizar las parejas de imágenes que sean encontradas
+    /*
+        Método para cotabilizar las parejas de imágenes que sean encontradas, 
+        ya que de esta forma se puede llevar un mejor control de las parejas acertadas por cada usuario
+    */
+    private boolean parejasEncontradas(int i) { 
         if (par_s[i] != 1) {
             return true;
         } else {
             return false;
         }
     }
-
-    private boolean FN_parejasEncontradas(int FN_i) {   // Método para cotabilizar las parejas de imágenes que sean encontradas, en caso de elegir la segunda categoría
-        if (FN_par_s[FN_i] != 1) {
+    /*
+        Método para cotabilizar las parejas de imágenes que sean encontradas, 
+        ya que de esta forma se puede llevar un mejor control de las parejas acertadas por cada usuario
+        Este es en caso de ser la categoría dos
+    */
+    private boolean fnparejasEncontradas(int fni) {   // Método para cotabilizar las parejas de imágenes que sean encontradas, en caso de elegir la segunda categoría
+        if (fnpar_s[fni] != 1) {
             return true;
         } else {
             return false;
         }
     }
-
-    private void MenuJ1() {   // Método que contiene el menú de opciones para mostrar cuando haya ganado el jugador1
+    /*
+        Método que contiene el menú de opciones para mostrar cuando haya ganado el jugador1, 
+        el cual contiene opciones de reiniciar completamente el juego o finalizar el mismo
+    */
+    
+    private void MenuJ1() {   
         Object resp = JOptionPane.showInputDialog(null, "¿QUÉ DESEA HACER?", ""
                 + "** Jugador " + txtJugador1.getText() + " ha ganado** ", JOptionPane.QUESTION_MESSAGE, null,
                 new Object[]{"Reiniciar", "Salir"}, "Seleccione");
@@ -388,8 +473,12 @@ public class viewMemorV1 extends javax.swing.JFrame {
             System.exit(0); // Fin de ejecución del programa
         }
     }
-
-    private void FN_MenuJ1() {   // Método que contiene el menú de opciones para mostrar cuando haya ganado el jugador1, en caso de elegir la segunda categoría
+    /*
+        Método que contiene el menú de opciones para mostrar cuando haya ganado el jugador1, 
+        el cual contiene opciones de reiniciar completamente el juego o finalizar el mismo
+        Este es en caso de ser la categría dos
+    */ 
+    private void fnMenuJ1() {   
         Object resp = JOptionPane.showInputDialog(null, "¿QUÉ DESEA HACER?", ""
                 + "** Jugador " + txtJugador1.getText() + " ha ganado** ", JOptionPane.QUESTION_MESSAGE, null,
                 new Object[]{"Reiniciar", "Salir"}, "Seleccione");
@@ -402,8 +491,11 @@ public class viewMemorV1 extends javax.swing.JFrame {
             System.exit(0); // Fin de ejecución del programa
         }
     }
-
-    private void MenuJ2() {   /// Método que contiene el menú de opciones para mostrar cuando haya ganado el jugador2
+   /*
+        Método que contiene el menú de opciones para mostrar cuando haya ganado el jugador2, 
+        el cual contiene opciones de reiniciar completamente el juego o finalizar el mismo
+    */
+    private void MenuJ2() {   
         Object resp = JOptionPane.showInputDialog(null, "¿QUÉ DESEA HACER?", ""
                 + "** Jugador " + txtJugador2.getText() + " ha ganado** ", JOptionPane.QUESTION_MESSAGE, null,
                 new Object[]{"Reiniciar", "Salir"}, "Seleccione");
@@ -416,8 +508,12 @@ public class viewMemorV1 extends javax.swing.JFrame {
             System.exit(0); // Fin de ejecución del programa
         }
     }
-
-    private void FN_MenuJ2() {   // Método que contiene el menú de opciones para mostrar cuando haya ganado el jugador2, en caso de elegir la segunda categoría
+    /*
+        Método que contiene el menú de opciones para mostrar cuando haya ganado el jugador2, 
+        el cual contiene opciones de reiniciar completamente el juego o finalizar el mismo
+        Este es en caso de ser la categría dos
+    */ 
+    private void fnMenuJ2() {   
         Object resp = JOptionPane.showInputDialog(null, "¿QUÉ DESEA HACER?", ""
                 + "** Jugador " + txtJugador2.getText() + " ha ganado** ", JOptionPane.QUESTION_MESSAGE, null,
                 new Object[]{"Reiniciar", "Salir"}, "Seleccione");
@@ -430,8 +526,11 @@ public class viewMemorV1 extends javax.swing.JFrame {
             System.exit(0); // Fin de ejecución del programa
         }
     }
-
-    private void MenuEmp() {   // Método que contiene el menú de opciones para mostrar cuando se haya empatado al término del juego
+    /*
+        Método que contiene el menú de opciones para mostrar cuando se haya empatado al término del juego, 
+        mostrará un menú de opciones para terminar el juego o reiniciar el mismo
+    */
+    private void MenuEmp() {   
         Object resp = JOptionPane.showInputDialog(null, "¿QUÉ DESEA HACER?", "     "
                 + "** Hubo un Empate** ", JOptionPane.QUESTION_MESSAGE, null,
                 new Object[]{"Reiniciar", "Salir"}, "Seleccione");
@@ -444,8 +543,12 @@ public class viewMemorV1 extends javax.swing.JFrame {
             System.exit(0); // Fin de ejecución del programa
         }
     }
-
-    private void FN_MenuEmp() {   // Método que contiene el menú de opciones para mostrar cuando se haya empatado al término del juego
+    /*
+        Método que contiene el menú de opciones para mostrar cuando se haya empatado al término del juego, 
+        mostrará un menú de opciones para terminar el juego o reiniciar el mismo
+        Este es en caso de ser la categoría dos
+    */
+    private void fnMenuEmp() {   // Método que contiene el menú de opciones para mostrar cuando se haya empatado al término del juego
         Object resp = JOptionPane.showInputDialog(null, "¿QUÉ DESEA HACER?", "     "
                 + "** Hubo un Empate** ", JOptionPane.QUESTION_MESSAGE, null,
                 new Object[]{"Reiniciar", "Salir"}, "Seleccione");
@@ -465,7 +568,7 @@ public class viewMemorV1 extends javax.swing.JFrame {
                 new Object[]{"SI", "NO", "Salir"}, "Seleccione");
 
         if (resp.equals("SI")) {   // Terminará e iniciará un juego nuevo
-            FN_iniciarArreglo();
+            fniniciarArreglo();
             auxiliar = 1;
             btnLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/portrait_2.jpg")));
         }
@@ -483,11 +586,13 @@ public class viewMemorV1 extends javax.swing.JFrame {
     /**
      * Creates new form MemorV1
      */
-    // Método para iniciar todos los componentes 
+    /* Método para iniciar todos los componentes necesarios para poder ejectutar el juego
+        Además aquí se ejecutará una acción de llamar un método que permite centrar la interfaz a la pantalla
+    */
     public viewMemorV1() {
         initComponents();
         centrarForma(); // Llamar a método para poder centrar la interfaz del juego
-        bloqBtn();
+        bloqBtn();  // Bloqueará elementos dentro de la interfaz
 
     }
 
@@ -514,26 +619,26 @@ public class viewMemorV1 extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         btnIniciar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        btn_1 = new javax.swing.JButton();
-        btn_2 = new javax.swing.JButton();
-        btn_3 = new javax.swing.JButton();
-        btn_4 = new javax.swing.JButton();
-        btn_5 = new javax.swing.JButton();
-        btn_6 = new javax.swing.JButton();
-        btn_7 = new javax.swing.JButton();
-        btn_8 = new javax.swing.JButton();
-        btn_9 = new javax.swing.JButton();
-        btn_10 = new javax.swing.JButton();
-        btn_11 = new javax.swing.JButton();
-        btn_12 = new javax.swing.JButton();
-        btn_13 = new javax.swing.JButton();
-        btn_14 = new javax.swing.JButton();
-        btn_15 = new javax.swing.JButton();
-        btn_16 = new javax.swing.JButton();
-        btn_17 = new javax.swing.JButton();
-        btn_18 = new javax.swing.JButton();
-        btn_19 = new javax.swing.JButton();
-        btn_20 = new javax.swing.JButton();
+        btn1 = new javax.swing.JButton();
+        btn2 = new javax.swing.JButton();
+        btn3 = new javax.swing.JButton();
+        btn4 = new javax.swing.JButton();
+        btn5 = new javax.swing.JButton();
+        btn6 = new javax.swing.JButton();
+        btn7 = new javax.swing.JButton();
+        btn8 = new javax.swing.JButton();
+        btn9 = new javax.swing.JButton();
+        btn10 = new javax.swing.JButton();
+        btn11 = new javax.swing.JButton();
+        btn12 = new javax.swing.JButton();
+        btn13 = new javax.swing.JButton();
+        btn14 = new javax.swing.JButton();
+        btn15 = new javax.swing.JButton();
+        btn16 = new javax.swing.JButton();
+        btn17 = new javax.swing.JButton();
+        btn18 = new javax.swing.JButton();
+        btn19 = new javax.swing.JButton();
+        btn20 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -659,272 +764,276 @@ public class viewMemorV1 extends javax.swing.JFrame {
 
         jPanel2.setLayout(new java.awt.GridLayout(4, 5));
 
-        btn_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_1MouseExited(evt);
+                btn1MouseExited(evt);
             }
         });
-        btn_1.addActionListener(new java.awt.event.ActionListener() {
+        btn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_1ActionPerformed(evt);
+                btn1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_1);
+        jPanel2.add(btn1);
 
-        btn_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_2MouseExited(evt);
+                btn2MouseExited(evt);
             }
         });
-        btn_2.addActionListener(new java.awt.event.ActionListener() {
+        btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_2ActionPerformed(evt);
+                btn2ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_2);
+        jPanel2.add(btn2);
 
-        btn_3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_3MouseExited(evt);
+                btn3MouseExited(evt);
             }
         });
-        btn_3.addActionListener(new java.awt.event.ActionListener() {
+        btn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_3ActionPerformed(evt);
+                btn3ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_3);
+        jPanel2.add(btn3);
 
-        btn_4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_4.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_4MouseExited(evt);
+                btn4MouseExited(evt);
             }
         });
-        btn_4.addActionListener(new java.awt.event.ActionListener() {
+        btn4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_4ActionPerformed(evt);
+                btn4ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_4);
+        jPanel2.add(btn4);
 
-        btn_5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_5.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_5MouseExited(evt);
+                btn5MouseExited(evt);
             }
         });
-        btn_5.addActionListener(new java.awt.event.ActionListener() {
+        btn5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_5ActionPerformed(evt);
+                btn5ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_5);
+        jPanel2.add(btn5);
 
-        btn_6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_6.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_6MouseExited(evt);
+                btn6MouseExited(evt);
             }
         });
-        btn_6.addActionListener(new java.awt.event.ActionListener() {
+        btn6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_6ActionPerformed(evt);
+                btn6ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_6);
+        jPanel2.add(btn6);
 
-        btn_7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_7.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_7MouseExited(evt);
+                btn7MouseExited(evt);
             }
         });
-        btn_7.addActionListener(new java.awt.event.ActionListener() {
+        btn7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_7ActionPerformed(evt);
+                btn7ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_7);
+        jPanel2.add(btn7);
 
-        btn_8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_8.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_8MouseExited(evt);
+                btn8MouseExited(evt);
             }
         });
-        btn_8.addActionListener(new java.awt.event.ActionListener() {
+        btn8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_8ActionPerformed(evt);
+                btn8ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_8);
+        jPanel2.add(btn8);
 
-        btn_9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_9.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_9MouseExited(evt);
+                btn9MouseExited(evt);
             }
         });
-        btn_9.addActionListener(new java.awt.event.ActionListener() {
+        btn9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_9ActionPerformed(evt);
+                btn9ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_9);
+        jPanel2.add(btn9);
 
-        btn_10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_10.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_10MouseExited(evt);
+                btn10MouseExited(evt);
             }
         });
-        btn_10.addActionListener(new java.awt.event.ActionListener() {
+        btn10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_10ActionPerformed(evt);
+                btn10ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_10);
+        jPanel2.add(btn10);
 
-        btn_11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_11.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_11MouseExited(evt);
+                btn11MouseExited(evt);
             }
         });
-        btn_11.addActionListener(new java.awt.event.ActionListener() {
+        btn11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_11ActionPerformed(evt);
+                btn11ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_11);
+        jPanel2.add(btn11);
 
-        btn_12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_12.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_12MouseExited(evt);
+                btn12MouseExited(evt);
             }
         });
-        btn_12.addActionListener(new java.awt.event.ActionListener() {
+        btn12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_12ActionPerformed(evt);
+                btn12ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_12);
+        jPanel2.add(btn12);
 
-        btn_13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_13.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_13MouseExited(evt);
+                btn13MouseExited(evt);
             }
         });
-        btn_13.addActionListener(new java.awt.event.ActionListener() {
+        btn13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_13ActionPerformed(evt);
+                btn13ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_13);
+        jPanel2.add(btn13);
 
-        btn_14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_14.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_14MouseExited(evt);
+                btn14MouseExited(evt);
             }
         });
-        btn_14.addActionListener(new java.awt.event.ActionListener() {
+        btn14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_14ActionPerformed(evt);
+                btn14ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_14);
+        jPanel2.add(btn14);
 
-        btn_15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_15.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_15MouseExited(evt);
+                btn15MouseExited(evt);
             }
         });
-        btn_15.addActionListener(new java.awt.event.ActionListener() {
+        btn15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_15ActionPerformed(evt);
+                btn15ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_15);
+        jPanel2.add(btn15);
 
-        btn_16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_16.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_16MouseExited(evt);
+                btn16MouseExited(evt);
             }
         });
-        btn_16.addActionListener(new java.awt.event.ActionListener() {
+        btn16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_16ActionPerformed(evt);
+                btn16ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_16);
+        jPanel2.add(btn16);
 
-        btn_17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_17.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_17MouseExited(evt);
+                btn17MouseExited(evt);
             }
         });
-        btn_17.addActionListener(new java.awt.event.ActionListener() {
+        btn17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_17ActionPerformed(evt);
+                btn17ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_17);
+        jPanel2.add(btn17);
 
-        btn_18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_18.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn18.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_18MouseExited(evt);
+                btn18MouseExited(evt);
             }
         });
-        btn_18.addActionListener(new java.awt.event.ActionListener() {
+        btn18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_18ActionPerformed(evt);
+                btn18ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_18);
+        jPanel2.add(btn18);
 
-        btn_19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_19.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn19.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_19MouseExited(evt);
+                btn19MouseExited(evt);
             }
         });
-        btn_19.addActionListener(new java.awt.event.ActionListener() {
+        btn19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_19ActionPerformed(evt);
+                btn19ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_19);
+        jPanel2.add(btn19);
 
-        btn_20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
-        btn_20.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/retro_1.jpg"))); // NOI18N
+        btn20.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_20MouseExited(evt);
+                btn20MouseExited(evt);
             }
         });
-        btn_20.addActionListener(new java.awt.event.ActionListener() {
+        btn20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_20ActionPerformed(evt);
+                btn20ActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_20);
+        jPanel2.add(btn20);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//  Al hacer clic en el menú iniciar podrá desbloquear los componentes, e iniciar el programa
+    /*
+        Al hacer clic en el botón iniciar podrá desbloquear los componentes, e iniciar el programa
+        además mostrará un menú que preguntará al usuario si es que desea cambiar la categoria de las imágenes
+        En caso de que el usuario cambie la categoría, los componentes a usar serán los ya designados para dicha categoría
+    */
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         // TODO add your handling code here:
         String jug_1 = JOptionPane.showInputDialog(null, "Nombre de jugador 1");
@@ -952,367 +1061,377 @@ public class viewMemorV1 extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnIniciarActionPerformed
-
-    private void btn_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_1ActionPerformed
-        // Coparación de categoría, dependiendo de la misma se mostrarán las imágenes y se harán las comparaciones en cada botón e iteración
+    /*
+        Coparación de categoría, dependiendo de la misma se mostrarán las imágenes y se harán las comparaciones en cada botón e iteración
+    */
+    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+         
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_1ActionPerformed
+    }//GEN-LAST:event_btn1ActionPerformed
 
-    private void btn_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_2ActionPerformed
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
 
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
 
 
-    }//GEN-LAST:event_btn_2ActionPerformed
+    }//GEN-LAST:event_btn2ActionPerformed
 
-    private void btn_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_3ActionPerformed
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_3ActionPerformed
+    }//GEN-LAST:event_btn3ActionPerformed
 
-    private void btn_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_4ActionPerformed
+    private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_4ActionPerformed
+    }//GEN-LAST:event_btn4ActionPerformed
 
-    private void btn_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_6ActionPerformed
+    private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_6ActionPerformed
+    }//GEN-LAST:event_btn6ActionPerformed
 
-    private void btn_7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_7ActionPerformed
+    private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_7ActionPerformed
+    }//GEN-LAST:event_btn7ActionPerformed
 
-    private void btn_8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_8ActionPerformed
+    private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_8ActionPerformed
+    }//GEN-LAST:event_btn8ActionPerformed
 
-    private void btn_9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_9ActionPerformed
+    private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_9ActionPerformed
+    }//GEN-LAST:event_btn9ActionPerformed
 
-    private void btn_10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_10ActionPerformed
+    private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_10ActionPerformed
+    }//GEN-LAST:event_btn10ActionPerformed
 
-    private void btn_11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_11ActionPerformed
+    private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_11ActionPerformed
+    }//GEN-LAST:event_btn11ActionPerformed
 
-    private void btn_12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_12ActionPerformed
+    private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_12ActionPerformed
+    }//GEN-LAST:event_btn12ActionPerformed
 
-    private void btn_13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_13ActionPerformed
+    private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_13ActionPerformed
+    }//GEN-LAST:event_btn13ActionPerformed
 
-    private void btn_14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_14ActionPerformed
+    private void btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn14ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_14ActionPerformed
+    }//GEN-LAST:event_btn14ActionPerformed
 
-    private void btn_15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_15ActionPerformed
+    private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_15ActionPerformed
+    }//GEN-LAST:event_btn15ActionPerformed
 
-    private void btn_16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_16ActionPerformed
+    private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_16ActionPerformed
+    }//GEN-LAST:event_btn16ActionPerformed
 
-    private void btn_17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_17ActionPerformed
+    private void btn17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn17ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_17ActionPerformed
+    }//GEN-LAST:event_btn17ActionPerformed
 
-    private void btn_18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_18ActionPerformed
+    private void btn18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn18ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_18ActionPerformed
+    }//GEN-LAST:event_btn18ActionPerformed
 
-    private void btn_19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_19ActionPerformed
+    private void btn19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn19ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_19ActionPerformed
+    }//GEN-LAST:event_btn19ActionPerformed
 
-    private void btn_20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_20ActionPerformed
+    private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn20ActionPerformed
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
-    }//GEN-LAST:event_btn_20ActionPerformed
+    }//GEN-LAST:event_btn20ActionPerformed
 
-    private void btn_1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_1MouseExited
+    private void btn5ActionPerformed(java.awt.event.ActionEvent evt){
+        if (auxiliar == 1) {
+            fnaccion3(evt);
+        } else {
+            accion3(evt);
+        }
+    }
+    
+    private void btn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn1MouseExited
         // TODO add your handling code here:
         // Dependiendo de la categoría, se mandará a llamar al método para mostrar las imágenes de cara posterior en caso de no ser encontrada la pareja
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
 
 
-    }//GEN-LAST:event_btn_1MouseExited
+    }//GEN-LAST:event_btn1MouseExited
 
-    private void btn_2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_2MouseExited
+    private void btn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn2MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_2MouseExited
+    }//GEN-LAST:event_btn2MouseExited
 
-    private void btn_3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_3MouseExited
+    private void btn3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn3MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_3MouseExited
+    }//GEN-LAST:event_btn3MouseExited
 
-    private void btn_4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_4MouseExited
+    private void btn4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn4MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_4MouseExited
+    }//GEN-LAST:event_btn4MouseExited
 
-    private void btn_5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_5MouseExited
+    private void btn5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn5MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_5MouseExited
+    }//GEN-LAST:event_btn5MouseExited
 
-    private void btn_6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_6MouseExited
+    private void btn6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn6MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_6MouseExited
+    }//GEN-LAST:event_btn6MouseExited
 
-    private void btn_7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_7MouseExited
+    private void btn7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn7MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_7MouseExited
+    }//GEN-LAST:event_btn7MouseExited
 
-    private void btn_8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_8MouseExited
+    private void btn8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn8MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_8MouseExited
+    }//GEN-LAST:event_btn8MouseExited
 
-    private void btn_9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_9MouseExited
+    private void btn9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn9MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_9MouseExited
+    }//GEN-LAST:event_btn9MouseExited
 
-    private void btn_10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_10MouseExited
+    private void btn10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn10MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_10MouseExited
+    }//GEN-LAST:event_btn10MouseExited
 
-    private void btn_11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_11MouseExited
+    private void btn11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn11MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_11MouseExited
+    }//GEN-LAST:event_btn11MouseExited
 
-    private void btn_12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_12MouseExited
+    private void btn12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn12MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_12MouseExited
+    }//GEN-LAST:event_btn12MouseExited
 
-    private void btn_13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_13MouseExited
+    private void btn13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn13MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_13MouseExited
+    }//GEN-LAST:event_btn13MouseExited
 
-    private void btn_14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_14MouseExited
+    private void btn14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn14MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_14MouseExited
+    }//GEN-LAST:event_btn14MouseExited
 
-    private void btn_15MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_15MouseExited
+    private void btn15MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn15MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_15MouseExited
+    }//GEN-LAST:event_btn15MouseExited
 
-    private void btn_16MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_16MouseExited
+    private void btn16MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn16MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_16MouseExited
+    }//GEN-LAST:event_btn16MouseExited
 
-    private void btn_17MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_17MouseExited
+    private void btn17MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn17MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_17MouseExited
+    }//GEN-LAST:event_btn17MouseExited
 
-    private void btn_18MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_18MouseExited
+    private void btn18MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn18MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_18MouseExited
+    }//GEN-LAST:event_btn18MouseExited
 
-    private void btn_19MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_19MouseExited
+    private void btn19MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn19MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_19MouseExited
+    }//GEN-LAST:event_btn19MouseExited
 
-    private void btn_20MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_20MouseExited
+    private void btn20MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn20MouseExited
         // TODO add your handling code here:
         if (auxiliar == 1) {
-            FN_accion4(evt);
+            fnaccion4(evt);
         } else {
             accion4(evt);
         }
-    }//GEN-LAST:event_btn_20MouseExited
+    }//GEN-LAST:event_btn20MouseExited
 
     private void btn_5ActionPerformed(java.awt.event.ActionEvent evt) {
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
@@ -1320,7 +1439,7 @@ public class viewMemorV1 extends javax.swing.JFrame {
 
     private void txtJugador2ActionPerformed(java.awt.event.ActionEvent evt) {
         if (auxiliar == 1) {
-            FN_accion3(evt);
+            fnaccion3(evt);
         } else {
             accion3(evt);
         }
@@ -1340,51 +1459,51 @@ public class viewMemorV1 extends javax.swing.JFrame {
     private void bloqBtn() {    // método para bloquear los componentes de la interfaz
         txtJugador1.setEditable(false);
         txtJugador2.setEditable(false);
-        btn_1.setEnabled(false);
-        btn_2.setEnabled(false);
-        btn_3.setEnabled(false);
-        btn_4.setEnabled(false);
-        btn_5.setEnabled(false);
-        btn_6.setEnabled(false);
-        btn_7.setEnabled(false);
-        btn_8.setEnabled(false);
-        btn_9.setEnabled(false);
-        btn_10.setEnabled(false);
-        btn_11.setEnabled(false);
-        btn_12.setEnabled(false);
-        btn_13.setEnabled(false);
-        btn_14.setEnabled(false);
-        btn_15.setEnabled(false);
-        btn_16.setEnabled(false);
-        btn_17.setEnabled(false);
-        btn_18.setEnabled(false);
-        btn_19.setEnabled(false);
-        btn_20.setEnabled(false);
+        btn1.setEnabled(false);
+        btn2.setEnabled(false);
+        btn3.setEnabled(false);
+        btn4.setEnabled(false);
+        btn5.setEnabled(false);
+        btn6.setEnabled(false);
+        btn7.setEnabled(false);
+        btn8.setEnabled(false);
+        btn9.setEnabled(false);
+        btn10.setEnabled(false);
+        btn11.setEnabled(false);
+        btn12.setEnabled(false);
+        btn13.setEnabled(false);
+        btn14.setEnabled(false);
+        btn15.setEnabled(false);
+        btn16.setEnabled(false);
+        btn17.setEnabled(false);
+        btn18.setEnabled(false);
+        btn19.setEnabled(false);
+        btn20.setEnabled(false);
         btnLogo.setEnabled(false);
 
     }
 
     private void debloqBtn() {  // Método para desbloquear los componentes al mmomento de iniciar el juego
-        btn_1.setEnabled(true);
-        btn_2.setEnabled(true);
-        btn_3.setEnabled(true);
-        btn_4.setEnabled(true);
-        btn_5.setEnabled(true);
-        btn_6.setEnabled(true);
-        btn_7.setEnabled(true);
-        btn_8.setEnabled(true);
-        btn_9.setEnabled(true);
-        btn_10.setEnabled(true);
-        btn_11.setEnabled(true);
-        btn_12.setEnabled(true);
-        btn_13.setEnabled(true);
-        btn_14.setEnabled(true);
-        btn_15.setEnabled(true);
-        btn_16.setEnabled(true);
-        btn_17.setEnabled(true);
-        btn_18.setEnabled(true);
-        btn_19.setEnabled(true);
-        btn_20.setEnabled(true);
+        btn1.setEnabled(true);
+        btn2.setEnabled(true);
+        btn3.setEnabled(true);
+        btn4.setEnabled(true);
+        btn5.setEnabled(true);
+        btn6.setEnabled(true);
+        btn7.setEnabled(true);
+        btn8.setEnabled(true);
+        btn9.setEnabled(true);
+        btn10.setEnabled(true);
+        btn11.setEnabled(true);
+        btn12.setEnabled(true);
+        btn13.setEnabled(true);
+        btn14.setEnabled(true);
+        btn15.setEnabled(true);
+        btn16.setEnabled(true);
+        btn17.setEnabled(true);
+        btn18.setEnabled(true);
+        btn19.setEnabled(true);
+        btn20.setEnabled(true);
         btnLogo.setEnabled(true);
 
     }
@@ -1428,28 +1547,28 @@ public class viewMemorV1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn1;
+    private javax.swing.JButton btn10;
+    private javax.swing.JButton btn11;
+    private javax.swing.JButton btn12;
+    private javax.swing.JButton btn13;
+    private javax.swing.JButton btn14;
+    private javax.swing.JButton btn15;
+    private javax.swing.JButton btn16;
+    private javax.swing.JButton btn17;
+    private javax.swing.JButton btn18;
+    private javax.swing.JButton btn19;
+    private javax.swing.JButton btn2;
+    private javax.swing.JButton btn20;
+    private javax.swing.JButton btn3;
+    private javax.swing.JButton btn4;
+    private javax.swing.JButton btn5;
+    private javax.swing.JButton btn6;
+    private javax.swing.JButton btn7;
+    private javax.swing.JButton btn8;
+    private javax.swing.JButton btn9;
     private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnLogo;
-    private javax.swing.JButton btn_1;
-    private javax.swing.JButton btn_10;
-    private javax.swing.JButton btn_11;
-    private javax.swing.JButton btn_12;
-    private javax.swing.JButton btn_13;
-    private javax.swing.JButton btn_14;
-    private javax.swing.JButton btn_15;
-    private javax.swing.JButton btn_16;
-    private javax.swing.JButton btn_17;
-    private javax.swing.JButton btn_18;
-    private javax.swing.JButton btn_19;
-    private javax.swing.JButton btn_2;
-    private javax.swing.JButton btn_20;
-    private javax.swing.JButton btn_3;
-    private javax.swing.JButton btn_4;
-    private javax.swing.JButton btn_5;
-    private javax.swing.JButton btn_6;
-    private javax.swing.JButton btn_7;
-    private javax.swing.JButton btn_8;
-    private javax.swing.JButton btn_9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
