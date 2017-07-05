@@ -36,7 +36,7 @@ public class viewMemorV1 extends javax.swing.JFrame {
     int par_s[] = new int[20]; //Arreglo para almacenar las parejas 
     int caNotClick[] = new int[20]; //arreglo de clics usado para mostrar y boltear imágenes
 
-    int turno = 1;
+    int turno;
     // Varriables usadas para usarse en el juego
     int par1 = 0;   // Variable para contar los pares de imágenes acertados por el usuario, que se le contarán al jugador con el turno que correspponda
     int par2 = 0;   // Misma funcionalidad de la variable anterior
@@ -57,7 +57,7 @@ public class viewMemorV1 extends javax.swing.JFrame {
     int fnpar_s[] = new int[20];    // Arreglo para contar los pares en la categoría dos
     int fncaNotClick[] = new int[20];   // Arreglo para contabilizar los clics dados por el usuario, si se encuentra en la categoría dos
 
-    int fnturno = 1;    // Variable tipo etero para revisar el turno de la categoría dos
+    int fnturno;    // Variable tipo etero para revisar el turno de la categoría dos
 
     int fnpar1 = 0; //Variable de tipo entero para contabilizar los pares de imágenes acertados por el jugador 1 en categoría dos
     int fnpar2 = 0; //Variable de tipo entero para contabilizar los pares de imágenes acertados por el jugador 2 en categoría dos
